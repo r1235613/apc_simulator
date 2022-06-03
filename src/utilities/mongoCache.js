@@ -15,7 +15,7 @@ class mongoCache {
         if (ft.length === 0){
             await this.collection.insertOne({name: ind, value: val})
         }else {
-            await this.collection.updateOne({ a: ind }, { $set: { value: val } });
+            await this.collection.updateOne({ name: ind }, { $set: { value: val } });
         }
 
     }
