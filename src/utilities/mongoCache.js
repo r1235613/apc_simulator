@@ -11,7 +11,13 @@ class mongoCache {
     }
 
     async set(ind, val){
-        await this.collection.insertOne({name: ind, value: val})
+        const ft = await this.collection.find({name: ind}).toArray();
+        if (ft.length === 0){
+            await this.collection.insertOne({name: ind, value: val})
+        }else {
+            await this.collection.updateOne({ a: ind }, { $set: { value: val } });
+        }
+
     }
 
     async get(ind){
