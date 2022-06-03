@@ -10,11 +10,11 @@ class mongoCache {
         this.collection = this.db.collection("Env_Data")
     }
 
-    async add(ind, val){
+    async set(ind, val){
         await this.collection.insertOne({name: ind, value: val})
     }
 
-    async set(ind){
+    async get(ind){
         const ft = await this.collection.find({name: ind}).toArray();
         if (ft.length === 0){
             return []
