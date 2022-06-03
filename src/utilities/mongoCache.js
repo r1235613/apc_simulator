@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 
 class mongoCache {
-    async constructor(url, dbName) {
+    constructor(url, dbName) {
         this.client = new MongoClient(url);
         this.dbName = dbName;
     }
