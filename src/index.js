@@ -46,7 +46,7 @@ const initGlobalCache = async () => {
   const url = 'mongodb://mongodb:27017';
   const dbName = 'TSMC';
   global.cache = new NodeCache();
-  global.cache.init(url, dbName)
+  await global.cache.init(url, dbName)
 
   global.cache.set('FACTOR_THICKNESS', 0.5);
   global.cache.set('FACTOR_MOISTURE', 0.5);
