@@ -4,6 +4,7 @@ class mongoCache {
     constructor(url, dbName) {
         this.client = new MongoClient(url);
         this.dbName = dbName;
+        this.collection = null;
     }
 
     async init(callback){
@@ -15,7 +16,12 @@ class mongoCache {
     }
 
     async set(ind){
-        return await this.collection.findOne({name: ind})
+        const ft = await this.collection.find({name: ind}).toArray();
+        if (ft.length === 0){
+            return []
+        }else {
+            return ft[0]
+        }
     }
 
     async close(){
