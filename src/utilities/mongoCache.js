@@ -4,9 +4,10 @@ class mongoCache {
     async constructor(url, dbName) {
         this.client = new MongoClient(url);
         this.dbName = dbName;
-        await this.client.connect();
-        this.db = this.client.db(dbName);
-        this.collection = this.db.collection("Env_Data")
+    }
+
+    async init(callback){
+        callback.bind(this)();
     }
 
     async add(ind, val){
