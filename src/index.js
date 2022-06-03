@@ -45,12 +45,8 @@ const initGlobalNATSClient = async () => {
 const initGlobalCache = async () => {
   const url = 'mongodb://mongodb:27017';
   const dbName = 'TSMC';
-  global.cache = new NodeCache(url, dbName);
-  global.cache.init(async function () {
-    await this.client.connect();
-    this.db = this.client.db(this.dbName);
-    this.collection = this.db.collection("Env_Data")
-  })
+  global.cache = new NodeCache();
+  global.cache.init(url, dbName)
 
   global.cache.set('FACTOR_THICKNESS', 0.5);
   global.cache.set('FACTOR_MOISTURE', 0.5);

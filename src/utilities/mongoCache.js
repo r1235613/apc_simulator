@@ -1,14 +1,13 @@
 const { MongoClient } = require('mongodb');
 
 class mongoCache {
-    constructor(url, dbName) {
+
+    async init(url, dbName){
         this.client = new MongoClient(url);
         this.dbName = dbName;
-        this.collection = null;
-    }
-
-    async init(callback){
-        callback.bind(this)();
+        await this.client.connect().then;
+        this.db = this.client.db(this.dbName);
+        this.collection = this.db.collection("Env_Data")
     }
 
     async add(ind, val){
