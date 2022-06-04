@@ -4,6 +4,10 @@
   "description": "the project to simulate the APC scenario",
   "main": "index.js",
   "scripts": {
+    "prod-unix": "export NODE_ENV=prod && node src",
+    "dev-unix": "export NODE_ENV=dev && node src",
+    "dev-win": "set NODE_ENV=dev && node src",
+    "prod-win": "set NODE_ENV=prod && node src",
     "test": "jest"
   },
   "repository": {
