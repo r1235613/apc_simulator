@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({path: `.env.${process.env.NODE_ENV}`});
 
-const { nats } = require('config');
+const { nats,mongodb } = require('config');
 
 const NodeCache = require('./utilities/mongoCache');
 
@@ -43,10 +43,8 @@ const initGlobalNATSClient = async () => {
 };
 
 const initGlobalCache = async () => {
-  const url = 'mongodb://mongodb:27017';
-  const dbName = 'TSMC';
   global.cache = new NodeCache();
-  await global.cache.init(url, dbName)
+  await global.cache.init(mongodb.connection, mongodb.name)
 
   global.cache.set('FACTOR_THICKNESS', 0.5);
   global.cache.set('FACTOR_MOISTURE', 0.5);
