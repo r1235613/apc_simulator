@@ -10,6 +10,10 @@ module.exports = {
     subject: 'testbed.subject',
     consumer: 'testbed_consumer',
   },
+  mongodb:{
+    connection:process.env.MONGODB_CONNECTION,
+    name:process.env.MONGODB_DB_NAME,
+  },
   domainService: {
     apc: {
       endpoint: 'http://127.0.0.1:3031',
