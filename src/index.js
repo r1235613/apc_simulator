@@ -1,9 +1,9 @@
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({path: `.env.${process.env.NODE_ENV}`});
 
-const { nats } = require('config');
+const { nats,mongodb } = require('config');
 
-const NodeCache = require('node-cache');
+const NodeCache = require('./utilities/mongoCache');
 
 const logger = require('./utilities/logger')('INDEX');
 const NATSClient = require('./utilities/natsClient');
@@ -44,6 +44,7 @@ const initGlobalNATSClient = async () => {
 
 const initGlobalCache = async () => {
   global.cache = new NodeCache();
+  await global.cache.init(mongodb.connection, mongodb.name)
 
   global.cache.set('FACTOR_THICKNESS', 0.5);
   global.cache.set('FACTOR_MOISTURE', 0.5);
