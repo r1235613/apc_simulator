@@ -1,0 +1,22 @@
+name: Unit test Coverage
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  JS-Unit-Test-Coverage:
+    name: JS-Unit-Test Coverage
+    permissions:
+      checks: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Coverage report
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+            github-token: ${{ secrets.SECRET_TOKEN }}
