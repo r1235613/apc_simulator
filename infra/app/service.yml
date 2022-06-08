@@ -8,6 +8,6 @@ spec:
     app: apc-simulator
   ports:
     - name: http
-      port: 3031
+      port: 80
       protocol: TCP
       targetPort: 3031
