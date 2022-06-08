@@ -11,8 +11,8 @@ module.exports = {
     consumer: 'testbed_consumer',
   },
   mongodb:{
-    connection:process.env.MONGODB_CONNECTION,
-    name:process.env.MONGODB_DB_NAME,
+    connection:process.env.MONGODB_CONNECTION || "mongodb://127.0.0.1:27017",
+    name:process.env.MONGODB_DB_NAME || "TSMC",
   },
   domainService: {
     apc: {
