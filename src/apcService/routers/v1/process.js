@@ -44,4 +44,11 @@ router.post('/api/v1/process', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+    // for Ingress discover
+    return res.status(200).send({ ok: true});
+
+  }
+);
+
 module.exports = router;
