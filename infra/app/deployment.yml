@@ -14,11 +14,13 @@ spec:
     spec:
       containers:
         - name: apc-simulator
-          image: lusifar/apc-simulator:v2
+          image: takidog/apc:latest
           ports:
-            - containerPort: 3030
+            - containerPort: 3031
           env:
-            - name: PORT
-              value: '3030'
             - name: NATS_SERVICE_CONNECTION
               value: 'nats-server:4222'
+            - name: MONGODB_CONNECTION
+              value: 'mongodb://mongodb:27017'
+            - name: MONGODB_DB_NAME
+              value: 'TSMC'
